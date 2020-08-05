@@ -15,7 +15,7 @@ module VagrantPlugins
         Driver.new.execute("docker", "version")
         true
       rescue Vagrant::Errors::CommandUnavailable, Errors::ExecuteError
-        raise if raise_error
+        raise Vagrant::Errors::DockerNotFound, file: "docker" if raise_error
         return false
       end
 

@@ -153,6 +153,10 @@ module Vagrant
           # Test if the provider is usable or not
           begin
             provider_cls.usable?(true)
+          rescue Errors::DockerNotFound
+            # Docker provider can be run on a guest machine, in which case it can
+            # usable without being installed on the host system
+            @logger.warn("Provider 'docker' is not usable on the host machine. This may cause errors!")
           rescue Errors::VagrantError => e
             raise Errors::ProviderNotUsable,
               machine: name.to_s,

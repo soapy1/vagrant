@@ -352,6 +352,9 @@ module Vagrant
       error_key(:destroy_requires_force)
     end
 
+    class DockerNotFound < CommandUnavailable
+    end
+
     class DotfileUpgradeJSONError < VagrantError
       error_key(:dotfile_upgrade_json_error)
     end
