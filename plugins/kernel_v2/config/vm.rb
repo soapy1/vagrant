@@ -727,7 +727,8 @@ module VagrantPlugins
 
         if @allow_fstab_modification == UNSET_VALUE
           plugins = Vagrant.plugin("2").manager.synced_folders
-          machine.synced_folders.types.each do |_, inst|
+          machine.synced_folders.types.each do |impl_name|
+            inst = machine.synced_folders.type(impl_name)
             if inst.capability?(:default_fstab_modification)
               if inst.capability(:default_fstab_modification) == false
                 @allow_fstab_modification = false
@@ -1031,7 +1032,7 @@ module VagrantPlugins
             option: "allow_fstab_modification", given: @allow_fstab_modification.class, required: "Boolean"
           )
         end
-        
+
         if ![TrueClass, FalseClass].include?(@allow_hosts_modification.class)
           errors["vm"] << I18n.t("vagrant.config.vm.config_type",
             option: "allow_hosts_modification", given: @allow_hosts_modification.class, required: "Boolean"

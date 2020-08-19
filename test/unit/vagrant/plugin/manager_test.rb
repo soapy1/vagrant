@@ -118,7 +118,7 @@ describe Vagrant::Plugin::Manager do
     end
 
     it "should init the bundler instance with plugins" do
-      expect(bundler).to receive(:init!).with(plugins, anything)
+      expect(bundler).to receive(:init!).with(plugins, any_args)
       subject.bundler_init(plugins)
     end
 
