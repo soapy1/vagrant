@@ -90,14 +90,12 @@ Vagrant.configure(2) do |global_config|
             path: "./scripts/#{PLATFORM_SCRIPT_MAPPING[platform]}-setup.#{provider_name}.ps1", run: "once",
             env: {
               "VMWARE_SN" => ENV["VAGRANT_VMWARE_SN_16"],
-              "VAGRANT_SPEC_BOX" => "c:/vagrant/#{guest_box.sub('/', '_')}.#{provider_name}.#{box_version}.box",
             }
         else
           config.vm.provision :shell,
             path: "./scripts/#{PLATFORM_SCRIPT_MAPPING[platform]}-setup.#{provider_name}.sh", run: "once",
             env: {
               "VMWARE_SN" => ENV["VAGRANT_VMWARE_SN_16"],
-              "VAGRANT_SPEC_BOX" => "/vagrant/test/vagrant-spec/boxes/#{guest_box.sub('/', '_')}.#{provider_name}.#{box_version}.box",
             }
         end
         
