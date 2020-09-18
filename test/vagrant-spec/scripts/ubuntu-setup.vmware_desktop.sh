@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xe
 
-WORKSTATION_DOWNLOAD_URL="${WORKSTATION_DOWNLOAD_URL:-https://www.vmware.com/go/getworkstation-linux}"
+WORKSTATION_DOWNLOAD_URL="${WORKSTATION_DOWNLOAD_URL:-https://download3.vmware.com/software/wkst/file/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle}"
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
