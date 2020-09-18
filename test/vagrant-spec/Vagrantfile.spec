@@ -92,13 +92,18 @@ Vagrant.configure(2) do |global_config|
           config.vm.provision :shell,
             path: "./scripts/#{PLATFORM_SCRIPT_MAPPING[platform]}-setup.#{provider_name}.sh", run: "once"
         end
+        
+        if idx != 0
+          spec_cmd_args = "#{spec_cmd_args} --without-component cli/*".strip
+        end
+        if provider_name == "vmware_desktop"
+          spec_cmd_args = "#{spec_cmd_args} --without-component cli/* --without-component provider/vmware_desktop/disk/*".strip
+        end
+
         if provider_name == "docker"
           docker_images.each_with_index do |image_info, idx|
             docker_image, _ = image_info
             spec_cmd_args = ENV["VAGRANT_SPEC_ARGS"]
-            if idx != 0
-              spec_cmd_args = "#{spec_cmd_args} --without-component cli/*".strip
-            end
             if platform == "windows"
               config.vm.provision(
                 :shell,
@@ -127,9 +132,6 @@ Vagrant.configure(2) do |global_config|
             guest_platform = guest_box.split('/').last.sub(/[^a-z]+$/, '')
             guest_platform = PLATFORM_SCRIPT_MAPPING[guest_platform]
             spec_cmd_args = ENV["VAGRANT_SPEC_ARGS"]
-            if idx != 0
-              spec_cmd_args = "#{spec_cmd_args} --without-component cli/*".strip
-            end
             if platform == "windows"
               config.vm.provision(
                 :shell,
