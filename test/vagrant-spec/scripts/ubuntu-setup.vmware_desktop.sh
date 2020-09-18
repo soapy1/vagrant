@@ -11,7 +11,7 @@ curl -Ss -f -L -o ./vmware-installer "${WORKSTATION_DOWNLOAD_URL}"
 chmod a+x ./vmware-installer
 ./vmware-installer --eulas-agreed --required
 vmware-modconfig --console --install-all
-/usr/lib/vmware/bin/vmware-vmx-debug --new-sn ${VMWARE_SN}
+/usr/lib/vmware/bin/vmware-vmx-debug --new-sn "${VMWARE_SN}"
 
 pushd /vagrant
 

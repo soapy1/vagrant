@@ -64,6 +64,7 @@ jobs:
           VAGRANT_SPEC_PROVIDERS: ${{matrix.providers}}
           VAGRANT_DOCKER_IMAGES: ${{matrix.docker_images}}
           VAGRANT_CI_LOADER_BUCKET: ${{ secrets.VAGRANT_CI_LOADER_BUCKET }}
+          VAGRANT_VMWARE_SN_16: ${{ secrets.VAGRANT_VMWARE_SN_16 }}
 
   cleanup:
     if: github.repository == 'hashicorp/vagrant-acceptance'
